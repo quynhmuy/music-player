@@ -1,5 +1,4 @@
 :root {
-    /* === THEME MÀU XANH SKY DREAMY (NỀN TRẮNG CHỦ ĐẠO - ITEM XÁM NHẠT) === */
     --color-bg: #f0f4f8; 
     --color-card: #ffffff; 
     --color-text: #37474f; 
@@ -9,7 +8,6 @@
     --color-hover-bg: #e8edf2; 
     --color-shadow: rgba(139, 174, 200, 0.1); 
 
-    /* Màu xanh accent */
     --color-accent: #a8c5db; 
     --color-accent-darker: #8faec8; 
     --color-text-on-accent: #ffffff; 
@@ -17,14 +15,11 @@
     --color-accent-text: rgba(255, 255, 255, 0.85); 
     --color-accent-tag-bg: rgba(255, 255, 255, 0.2);
     
-    /* Màu nền cho các item con */
     --color-light-gray-item: #e8edf2; 
     --color-light-gray-item-hover: #dbe2ea; 
     
-    /* === MÀU CHO TRÁI TIM === */
-    --color-heart-liked: #e91e63; /* Màu hồng cho trái tim đã like */
-    --color-heart-unliked: var(--color-accent-darker); /* Màu viền xanh cho trái tim chưa like */
-    /* === KẾT THÚC THEME === */
+    --color-heart-liked: #e91e63; 
+    --color-heart-unliked: var(--color-accent-darker); 
 }
 
 body.dark-mode {
@@ -319,7 +314,6 @@ button {
     transition: all 0.2s ease;
 }
 
-/* Các quy tắc trái tim mặc định */
 .like-button {
     background: none;
     border: none;
@@ -337,12 +331,9 @@ button {
     opacity: 0.8; 
 }
 
-/* === CẬP NHẬT: Trái tim trong Card (Popular Albums) khi được like === */
 .card .card-actions .like-button i.fas.fa-heart {
-    color: var(--color-heart-liked); /* Màu hồng đậm */
+    color: var(--color-heart-liked); 
 }
-/* === KẾT THÚC CẬP NHẬT === */
-
 
 .play-button {
     background-color: var(--color-card);
@@ -416,10 +407,10 @@ button {
     margin-left: auto; 
 }
 .player-left .like-button i.far.fa-heart {
-    color: var(--color-text-on-accent); /* Giữ viền trắng */
+    color: var(--color-text-on-accent); 
 }
 .player-left .like-button i.fas.fa-heart {
-    color: var(--color-heart-liked); /* Màu hồng */
+    color: var(--color-heart-liked); 
 }
 .player-left .like-button:hover i {
     opacity: 0.8;
@@ -696,11 +687,9 @@ button {
     color: var(--color-accent-darker);
     font-size: 18px;
 }
-/* === CẬP NHẬT: Trái tim trong Recent Item khi được like === */
 .recent-item .actions .like-button i.fas.fa-heart {
-    color: var(--color-heart-liked); /* Màu hồng đậm */
+    color: var(--color-heart-liked); 
 }
-/* === KẾT THÚC CẬP NHẬT === */
 .recent-item .actions .like-button {
     font-size: 16px; 
 }
