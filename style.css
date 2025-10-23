@@ -1,21 +1,30 @@
 :root {
-    --color-bg: #f0f2f5;
-    --color-card: #ffffff;
-    --color-text: #333333;
-    --color-text-muted: #6c757d;
-    --color-border: #f0f0f0;
-    --color-border-tabs: #dee2e6;
-    --color-hover-bg: #f8f9fa;
-    --color-shadow: rgba(0, 0, 0, 0.05);
+    /* === THEME MÀU XANH SKY DREAMY (NỀN TRẮNG CHỦ ĐẠO - ITEM XÁM NHẠT) === */
+    --color-bg: #f0f4f8; 
+    --color-card: #ffffff; 
+    --color-text: #37474f; 
+    --color-text-muted: #78909c; 
+    --color-border: #dbe2ea; 
+    --color-border-tabs: #dbe2ea;
+    --color-hover-bg: #e8edf2; 
+    --color-shadow: rgba(139, 174, 200, 0.1); 
 
-    --color-accent: #87CEFA;
-    --color-accent-darker: #4682B4;
-    --color-accent-text-strong: #2a2a2a;
-    --color-accent-text: #444;
-    --color-accent-tag-bg: rgba(255, 255, 255, 0.4);
-    --color-accent-light-bg: #F0F8FF;
-    --color-accent-light-border: #B0E0E6;
-    --color-text-on-accent: #ffffff;
+    /* Màu xanh accent */
+    --color-accent: #a8c5db; 
+    --color-accent-darker: #8faec8; 
+    --color-text-on-accent: #ffffff; 
+    --color-accent-text-strong: var(--color-text-on-accent); 
+    --color-accent-text: rgba(255, 255, 255, 0.85); 
+    --color-accent-tag-bg: rgba(255, 255, 255, 0.2);
+    
+    /* Màu nền cho các item con */
+    --color-light-gray-item: #e8edf2; 
+    --color-light-gray-item-hover: #dbe2ea; 
+    
+    /* === MÀU CHO TRÁI TIM === */
+    --color-heart-liked: #e91e63; /* Màu hồng cho trái tim đã like */
+    --color-heart-unliked: var(--color-accent-darker); /* Màu viền xanh cho trái tim chưa like */
+    /* === KẾT THÚC THEME === */
 }
 
 body.dark-mode {
@@ -28,14 +37,18 @@ body.dark-mode {
     --color-hover-bg: #2a2a2a;
     --color-shadow: rgba(0, 0, 0, 0.2);
 
-    --color-accent: #87CEFA;
-    --color-accent-darker: #9acced;
-    --color-accent-text-strong: #2a2a2a;
-    --color-accent-text: #2a2a2a;
-    --color-accent-tag-bg: rgba(0, 0, 0, 0.2);
-    --color-accent-light-bg: #2a3a4a;
-    --color-accent-light-border: #4682B4;
+    --color-accent: #8faec8; 
+    --color-accent-darker: #7495b1;
     --color-text-on-accent: #ffffff;
+    --color-accent-text-strong: var(--color-text-on-accent);
+    --color-accent-text: rgba(255, 255, 255, 0.8);
+    --color-accent-tag-bg: rgba(0, 0, 0, 0.2);
+
+    --color-light-gray-item: #2a2a2a;
+    --color-light-gray-item-hover: #3a3a3a;
+    
+    --color-heart-liked: #f06292; 
+    --color-heart-unliked: var(--color-accent); 
 }
 
 * {
@@ -51,10 +64,10 @@ body {
     color: var(--color-text);
     height: 100vh;
     padding: 15px;
-    display: grid;
-    grid-template-rows: auto 1fr auto;
-    gap: 15px;
     animation: fadeIn 0.4s ease-out;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
 }
 
 @keyframes fadeIn {
@@ -67,17 +80,18 @@ body {
     font-weight: 600;
     padding-left: 10px;
     color: var(--color-text);
+    flex-shrink: 0;
 }
 
 .app-container {
     display: flex;
     gap: 15px;
     overflow: hidden;
-    grid-row: 2 / 3;
+    flex-grow: 1;
 }
 
-.sidebar, .main-content, .rightbar {
-    background-color: var(--color-card);
+.sidebar, .rightbar {
+    background-color: var(--color-card); 
     border-radius: 12px;
     padding: 24px;
     overflow-y: auto;
@@ -101,7 +115,7 @@ body {
     font-weight: 700;
 }
 .logo .fa-compact-disc {
-    color: var(--color-accent);
+    color: var(--color-accent-darker);
     font-size: 1.8rem;
 }
 .logo h1 {
@@ -144,7 +158,7 @@ body {
     display: block;
     text-align: center;
     text-decoration: none;
-    color: var(--color-accent);
+    color: var(--color-accent-darker);
     font-size: 0.9rem;
     margin-bottom: 15px;
 }
@@ -153,9 +167,21 @@ body {
     display: flex;
     align-items: center;
     gap: 10px;
-    padding: 10px;
-    background-color: var(--color-hover-bg);
+    padding: 10px 15px;
+    background-color: var(--color-accent);
     border-radius: 8px;
+    color: var(--color-text-on-accent);
+}
+
+.user-profile span {
+    flex-grow: 1;
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--color-text-on-accent);
+}
+
+.user-profile i {
+     color: var(--color-accent-text);
 }
 
 .user-profile img {
@@ -165,16 +191,25 @@ body {
     object-fit: cover;
 }
 
-.user-profile span {
+.main-content-wrapper {
     flex-grow: 1;
-    font-weight: 600;
-    font-size: 0.9rem;
-    color: var(--color-text);
+    min-width: 0;
+    display: grid;
+    grid-template-rows: 1fr auto;
+    gap: 15px;
+    overflow: hidden;
+    background-color: var(--color-card);
+    border-radius: 12px;
+    box-shadow: 0 4px 20px var(--color-shadow);
+    padding: 24px;
 }
 
 .main-content {
     flex-grow: 1;
     min-width: 0;
+    overflow-y: auto;
+    background-color: transparent;
+    padding: 0;
 }
 
 .main-header {
@@ -203,9 +238,9 @@ body {
 }
 
 .tabs a.active {
-    background-color: var(--color-accent-darker);
+    background-color: var(--color-accent);
     color: var(--color-text-on-accent);
-    border-color: var(--color-accent-darker);
+    border-color: var(--color-accent);
 }
 
 .content-section {
@@ -228,16 +263,17 @@ body {
 }
 
 .card {
-    background-color: var(--color-card);
+    background-color: var(--color-light-gray-item);
     padding: 12px;
     border-radius: 8px;
     border: 1px solid var(--color-border);
-    transition: transform 0.3s, box-shadow 0.3s;
+    transition: transform 0.3s, box-shadow 0.3s, background-color 0.3s;
 }
 
 .card:hover {
     transform: translateY(-5px);
     box-shadow: 0 8px 25px var(--color-shadow);
+    background-color: var(--color-light-gray-item-hover);
 }
 
 .card img {
@@ -283,31 +319,45 @@ button {
     transition: all 0.2s ease;
 }
 
+/* Các quy tắc trái tim mặc định */
 .like-button {
     background: none;
     border: none;
     font-size: 16px;
-    color: var(--color-text-muted);
+    padding: 0; 
+    line-height: 1; 
+}
+.like-button i.far.fa-heart { 
+    color: var(--color-heart-unliked); 
+}
+.like-button i.fas.fa-heart { 
+    color: var(--color-heart-liked); 
+}
+.like-button:hover i {
+    opacity: 0.8; 
 }
 
-.like-button:hover,
-.like-button .fas.fa-heart {
-    color: #e53935;
+/* === CẬP NHẬT: Trái tim trong Card (Popular Albums) khi được like === */
+.card .card-actions .like-button i.fas.fa-heart {
+    color: var(--color-heart-liked); /* Màu hồng đậm */
 }
+/* === KẾT THÚC CẬP NHẬT === */
+
 
 .play-button {
-    background-color: var(--color-accent);
-    color: var(--color-text-on-accent);
+    background-color: var(--color-card);
+    color: var(--color-text-muted);
     width: 35px;
     height: 35px;
     border-radius: 50%;
-    border: none;
+    border: 1px solid var(--color-border); 
     display: flex;
     justify-content: center;
     align-items: center;
 }
 .play-button:hover {
-    opacity: 0.8;
+    color: var(--color-text); 
+    background-color: var(--color-hover-bg);
 }
 
 .rightbar {
@@ -316,16 +366,17 @@ button {
 }
 
 .player {
-    background-color: var(--color-card);
+    background-color: var(--color-accent);
+    color: var(--color-text-on-accent);
     border-radius: 12px;
-    box-shadow: 0 -4px 20px var(--color-shadow);
+    box-shadow: 0 4px 20px var(--color-shadow);
     height: 90px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 0 30px;
     gap: 20px;
-    grid-row: 3 / 4;
+    overflow: hidden;
 }
 
 .player-left, .player-center, .player-right {
@@ -353,51 +404,71 @@ button {
 .player-left .song-title {
     font-weight: 600;
     font-size: 0.9rem;
-    color: var(--color-text);
+    color: var(--color-text-on-accent);
 }
 
 .player-left .song-artist {
     font-size: 0.8rem;
-    color: var(--color-text-muted);
+    color: var(--color-accent-text);
 }
+
+.player-left .like-button {
+    margin-left: auto; 
+}
+.player-left .like-button i.far.fa-heart {
+    color: var(--color-text-on-accent); /* Giữ viền trắng */
+}
+.player-left .like-button i.fas.fa-heart {
+    color: var(--color-heart-liked); /* Màu hồng */
+}
+.player-left .like-button:hover i {
+    opacity: 0.8;
+}
+
 
 .player-center {
     flex-grow: 1;
     flex-direction: column;
-    gap: 8px;
+    gap: 4px; 
     max-width: 500px;
+    justify-content: center; 
 }
 
 .player-buttons {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 15px;
+    gap: 20px; 
     width: 100%;
+    order: 2; 
+    margin-bottom: 0; 
 }
 
 .player-buttons button {
     background: none;
     border: none;
-    font-size: 16px;
+    font-size: 18px; 
     cursor: pointer;
-    color: var(--color-text-muted);
+    color: var(--color-accent-text);
+    padding: 5px; 
+    line-height: 1; 
 }
 .player-buttons button:hover {
-    color: var(--color-text);
+    color: var(--color-text-on-accent);
 }
 
 .play-main-button {
-    background-color: var(--color-accent);
-    color: var(--color-text-on-accent);
-    width: 45px;
-    height: 45px;
-    border-radius: 50%;
-    font-size: 18px;
+    background-color: transparent; 
+    color: var(--color-text-on-accent); 
+    width: auto; 
+    height: auto; 
+    border-radius: 0; 
+    font-size: 24px; 
+    padding: 0 5px; 
 }
 .play-main-button:hover {
-    color: var(--color-text-on-accent);
-    opacity: 0.9;
+    background-color: transparent; 
+    color: var(--color-text-on-accent); 
 }
 
 .progress-bar-area {
@@ -406,16 +477,17 @@ button {
     gap: 10px;
     width: 100%;
     font-size: 0.75rem;
-    color: var(--color-text-muted);
+    color: var(--color-accent-text);
+    order: 1; 
 }
 .progress-bar-area span:first-child {
-    display: none;
+    display: block;
 }
 
 .progress-bar {
     flex-grow: 1;
     height: 4px;
-    background-color: var(--color-border-tabs);
+    background-color: rgba(255, 255, 255, 0.3);
     border-radius: 2px;
     cursor: pointer;
 }
@@ -423,7 +495,7 @@ button {
 .progress {
     width: 40%;
     height: 100%;
-    background-color: var(--color-accent);
+    background-color: var(--color-text-on-accent);
     border-radius: 2px;
 }
 
@@ -433,14 +505,14 @@ button {
 }
 
 .player-right .fa-volume-up {
-    font-size: 16px;
-    color: var(--color-text-muted);
+    font-size: 18px; 
+    color: var(--color-accent-text);
 }
 
 .volume-bar {
     width: 100px;
     height: 4px;
-    background-color: var(--color-border-tabs);
+    background-color: rgba(255, 255, 255, 0.3);
     border-radius: 2px;
     cursor: pointer;
 }
@@ -448,13 +520,13 @@ button {
 .volume-level {
     width: 70%;
     height: 100%;
-    background-color: var(--color-text-muted);
+    background-color: var(--color-accent-text);
     border-radius: 2px;
 }
 
 .picked-for-you {
     background-color: var(--color-accent);
-    color: var(--color-accent-text);
+    color: var(--color-text-on-accent);
     border-radius: 12px;
     padding: 24px;
     display: flex;
@@ -480,13 +552,13 @@ button {
     font-weight: bold;
     margin-bottom: 8px;
     display: inline-block;
-    color: var(--color-accent-text-strong);
+    color: var(--color-text-on-accent);
 }
 .picked-for-you .info h3 {
     font-size: 1.8rem;
     font-weight: 700;
     margin-bottom: 8px;
-    color: var(--color-accent-text-strong);
+    color: var(--color-text-on-accent);
 }
 .picked-for-you .info p {
     font-size: 0.9rem;
@@ -507,7 +579,7 @@ button {
 }
 .picked-for-you .tags span {
     background: var(--color-accent-tag-bg);
-    color: var(--color-accent-text-strong);
+    color: var(--color-text-on-accent);
     padding: 4px 10px;
     border-radius: 15px;
     font-size: 0.8rem;
@@ -521,16 +593,35 @@ button {
 .picked-for-you .actions button {
     background: none;
     border: none;
-    color: var(--color-accent-text-strong);
+    color: var(--color-text-on-accent);
     font-size: 18px;
 }
 .picked-for-you .actions button.play-button {
-    background-color: var(--color-card);
-    color: var(--color-accent);
+    background-color: var(--color-text-on-accent);
+    color: var(--color-accent-darker);
     width: 40px;
     height: 40px;
     font-size: 16px;
 }
+
+.picked-for-you .actions .like-button {
+    border: 1px solid var(--color-text-on-accent); 
+    border-radius: 50%; 
+    width: 40px; 
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+}
+.picked-for-you .actions .like-button i {
+    color: var(--color-text-on-accent); 
+    font-size: 16px;
+}
+.picked-for-you .actions .like-button:hover i {
+    opacity: 0.8;
+}
+
 
 .recent-list {
     display: flex;
@@ -547,9 +638,11 @@ button {
     border-radius: 8px;
     transition: background-color 0.2s;
     flex-shrink: 0; 
+    background-color: var(--color-light-gray-item);
+    border: 1px solid var(--color-border);
 }
 .recent-item:hover {
-    background-color: var(--color-hover-bg);
+    background-color: var(--color-light-gray-item-hover);
 }
 .recent-item .index {
     color: var(--color-text-muted);
@@ -600,14 +693,23 @@ button {
 .recent-item .actions .play-button-sm {
     background: none;
     border: none;
-    color: var(--color-accent);
+    color: var(--color-accent-darker);
     font-size: 18px;
 }
+/* === CẬP NHẬT: Trái tim trong Recent Item khi được like === */
+.recent-item .actions .like-button i.fas.fa-heart {
+    color: var(--color-heart-liked); /* Màu hồng đậm */
+}
+/* === KẾT THÚC CẬP NHẬT === */
+.recent-item .actions .like-button {
+    font-size: 16px; 
+}
+
 
 .search-bar {
     display: flex;
     align-items: center;
-    background-color: var(--color-hover-bg);
+    background-color: var(--color-light-gray-item);
     padding: 10px 15px;
     border-radius: 8px;
     margin-bottom: 25px;
@@ -667,58 +769,90 @@ button {
 .queue-list {
     display: flex;
     flex-direction: column;
-    gap: 10px;
-    max-height: 250px;
+    gap: 8px; 
+    max-height: 250px; 
     overflow-y: auto;
 }
 .queue-item {
     display: flex;
     align-items: center;
-    gap: 10px;
-    padding: 10px;
-    border-radius: 8px;
-    background-color: var(--color-hover-bg);
-    border: 1px solid transparent;
+    padding: 8px 12px; 
+    border-radius: 6px; 
+    background-color: var(--color-light-gray-item);
+    border: 1px solid var(--color-border);
     transition: background-color 0.2s;
     flex-shrink: 0;
+    gap: 10px; 
+}
+.queue-item:hover {
+    background-color: var(--color-light-gray-item-hover);
 }
 .queue-item.active {
-    border-color: var(--color-accent-light-border);
-    background-color: var(--color-accent-light-bg);
+    border-color: var(--color-border);
+    background-color: var(--color-light-gray-item-hover);
 }
-.queue-item .play-pause-btn {
-    background: none;
-    border: none;
-    font-size: 14px;
-    color: var(--color-text);
-    width: 20px;
-    text-align: center;
-}
+
 .queue-item .like-button {
-    font-size: 14px;
+    order: 0; 
+    margin-right: 0; 
+    font-size: 1rem; 
+    flex-shrink: 0; 
 }
+
+
 .queue-item img {
-    width: 40px;
-    height: 40px;
-    border-radius: 4px;
+    width: 40px; 
+    height: 40px; 
+    border-radius: 4px; 
     object-fit: cover;
+    flex-shrink: 0; 
+    order: 1; 
+}
+.queue-item .item-info {
+    flex-grow: 1; 
+    order: 2; 
+    min-width: 0; 
 }
 .queue-item .item-info h3 {
-    font-size: 0.9rem;
+    font-size: 0.85rem; 
     font-weight: 600;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
     color: var(--color-text);
+    margin-bottom: 1px; 
 }
 .queue-item .item-info p {
-    font-size: 0.8rem;
+    font-size: 0.75rem; 
     color: var(--color-text-muted);
 }
 .queue-item .duration {
-    font-size: 0.85rem;
+    font-size: 0.8rem; 
     color: var(--color-text-muted);
-    padding-left: 10px;
+    order: 3; 
+    margin-left: auto; 
+    flex-shrink: 0; 
+}
+
+.queue-item .play-pause-btn {
+    background-color: var(--color-text-muted); 
+    color: var(--color-card); 
+    width: 24px; 
+    height: 24px; 
+    border-radius: 50%; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none; 
+    font-size: 0.7rem; 
+    flex-shrink: 0; 
+    order: 4; 
+    padding: 0; 
+}
+
+.queue-item .play-pause-btn:hover {
+    background-color: var(--color-text); 
+    color: var(--color-card);
 }
 
 .player-right .player-icon-btn {
@@ -783,7 +917,7 @@ button {
     border-radius: 50%;
 }
 input:checked + .slider {
-    background-color: var(--color-accent);
+    background-color: var(--color-accent-darker);
 }
 input:checked + .slider:before {
     transform: translateX(20px);
@@ -792,6 +926,7 @@ input:checked + .slider:before {
 
 @media (max-width: 1100px) {
     .rightbar { display: none; }
+    .main-content-wrapper { padding: 15px; } 
     .player-left { width: 250px; }
     .player-right { width: auto; flex-grow: 1; }
 }
@@ -800,24 +935,33 @@ input:checked + .slider:before {
     body {
         display: block; 
         padding: 10px;
-        padding-bottom: 150px; 
+        padding-bottom: 10px;
     }
     .page-title { padding: 0 5px; }
-    .app-container { flex-direction: column; grid-row: auto; }
+    .app-container { 
+        flex-direction: column; 
+        grid-row: auto; 
+        height: auto;
+        overflow: visible;
+    }
     .sidebar { display: none; }
-    .main-content, .rightbar { width: 100%; padding: 15px; }
+    .main-content-wrapper {
+        gap: 10px;
+        padding: 15px; 
+    }
+    .main-content, .rightbar { 
+        width: 100%; 
+        padding: 15px; 
+    }
     .player {
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        right: 0;
+        position: static;
         width: 100%;
-        border-radius: 0;
+        border-radius: 12px;
         padding: 15px;
         height: auto;
         flex-direction: column;
         gap: 15px;
-        z-index: 1000;
+        z-index: auto;
         grid-row: auto;
     }
     .player-left, .player-center, .player-right {
@@ -826,7 +970,17 @@ input:checked + .slider:before {
         justify-content: center;
     }
     .player-left { justify-content: space-between; }
-    .player-center { order: -1; }
+    .player-center { 
+        order: -1; 
+        gap: 4px; 
+    }
+     .player-buttons {
+        order: 2; 
+        margin-bottom: 0;
+    }
+    .progress-bar-area {
+        order: 1; 
+    }
 }
 
 @media (max-width: 600px) {

@@ -1,4 +1,97 @@
+# Giao diện Ứng dụng Nghe nhạc (Music Player UI)
+
+Đây là một dự án front-end xây dựng giao diện người dùng (UI) cho một ứng dụng nghe nhạc. Dự án được code hoàn toàn bằng HTML, CSS và một chút JavaScript, tập trung vào việc mô phỏng chính xác thiết kế, có tính tương tác và đảm bảo hoạt động trên nhiều kích cỡ màn hình.
+
+---
+## 🚀 Tính năng chính
+
+Dự án này đáp ứng đầy đủ các yêu cầu của bài tập:
+
+* **Giao diện đầy đủ:** Giao diện 3 cột (Sidebar, Main Content, Rightbar) và thanh Player được tái hiện chính xác theo mẫu thiết kế.
+* **🎨 Chuyển đổi Light / Dark Mode:** Người dùng có thể gạt nút ở thanh sidebar để chuyển đổi qua lại giữa 2 chế độ giao diện Sáng và Tối.
+* **📱 Responsive UI Design:** Giao diện tự động điều chỉnh (sử dụng `@media queries`):
+    * **Tablet (<= 1100px):** Ẩn cột bên phải (`rightbar`).
+    * **Mobile (<= 800px):** Ẩn cả 2 cột bên, giao diện 1 cột, thanh player ghim xuống dưới.
+* **✨ Hiệu ứng Transitions:** Tất cả các thành phần tương tác (nút, link, thẻ card) đều có hiệu ứng `hover` mượt mà. Hiệu ứng chuyển đổi Light/Dark mode cũng mượt mà.
+* **🎬 Hiệu ứng Animations:** Trang web có hiệu ứng `fadeIn` đơn giản khi tải (sử dụng `@keyframes`).
+* **📜 Danh sách cuộn (Scrollable Lists):** Các mục "Recent" và "Next in Queue" có chiều cao cố định và tự động xuất hiện thanh cuộn khi danh sách quá dài.
+
+---
+
+## 🛠️ Công nghệ sử dụng
+
+* **HTML5:** Cấu trúc ngữ nghĩa cho trang web.
+* **CSS3:** Tạo kiểu giao diện, bao gồm:
+    * **Flexbox** và **Grid** để dựng bố cục.
+    * **CSS Variables (Biến CSS)** để quản lý theme Light/Dark.
+    * **Media Queries** cho Responsive Design.
+    * **Transitions** và **Animations** cho hiệu ứng động.
+* **JavaScript (ES6+):** Một đoạn script ngắn gọn để xử lý logic bật/tắt `class` cho Light/Dark mode.
+
+---
+
 <!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Circle Music</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    
+    <h1 class="page-title">Music Player</h1>
+
+    <div class="app-container">
+        <aside class="sidebar">
+            <div class="logo">
+                <i class="fas fa-compact-disc"></i> 
+                <h1>Circle</h1>
+            </div>
+            <nav class="menu">
+                <a href="#" class="active"><i class="fas fa-home"></i> Home</a>
+                <a href="#"><i class="fas fa-search"></i> Search</a>
+                <a href="#"><i class="fas fa-list-ul"></i> Playlists</a>
+                <a href="#"><i class="fas fa-bell"></i> Notifications</a>
+                <a href="#"><i class="fas fa-gem"></i> Premium Content</a>
+            </nav>
+            <div class="sidebar-footer">
+                
+                <div class="theme-switcher">
+                    <i class="fas fa-sun"></i>
+                    <label class="switch">
+                        <input type="checkbox" id="theme-toggle">
+                        <span class="slider round"></span>
+                    </label>
+                    <i class="fas fa-moon"></i>
+                </div>
+
+                <a href="#" class="download-link">Download Desktop App</a>
+                <div class="user-profile">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT9EL1tfwm9uFVCV-cSoZeENZLMVMEqA45GWw&s" alt="User Avatar">
+                    <span>Quỳnh Mũy</span>
+                    <i class="fas fa-chevron-up"></i>
+                </div>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <header class="main-header">
+                <div class="tabs">
+                    <a href="#" class="active">Music</a>
+                    <a href="#">Podcasts</a>
+                    <a href="#">Jazz</a>
+                    <a href="#">Electronic</a>
+                    <a href="#">Rock Classic</a>
+                    <a href="#">Hip Hop</a>
+                </div>
+            </header>
+            
+            <section class="content-section">
+                <h2>Popular Albums</h2>
+                <div class="card-grid-3-cols">
+                    <div class="card"><!DOCTYPE html>
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
